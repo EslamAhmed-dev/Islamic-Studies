@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+    <title>Islamic Studies</title>
+<style>
+    :root{
+    --navy: #1c1a2e;
+    --navy-light: #25233c;
+    --golg: #034547;
+    --cream: #666814;
+    --text-dark: #1c1a2e;
+    --text-muted: #6b6b76;
+    --white: #faf7f7;
+    }
+    *{margin: 0; padding: 0; box-sizing: border-box;}
+    body{
+        font-family:Arial, sans-serif;
+        color: var(--text-dark);
+        background: var(--cream);
+        line-height: 1.6;
+    }
+    h1, h2, h3{
+        font-family:'playfair Display', serif;
+    }
+    a{
+        text-decoration: none;
+        color: inherit;
+    }
+    ul
+{
+        list-style: none;
+    }
+    .container{
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 0 24px;
+    }
+    .navbar{
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: var(--navy);
+        padding: 18px 0;
+
+    }
+    .navbar .container{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+    }
+    .logo{
+        font-family:Arial, Helvetica, sans-serif;
+        font-size: 1,5rem;
+        font-weight: 700;
+        color: var(--white);
+    }
+    .logo span{
+        color :var(--gold);
+    }
+    .nav-links{
+        display: flex;
+        align-items: center;
+        gap:36px;
+    }
+    .nav-links a{
+        color: var(--white);
+        font-size: 0.95rem;
+        transition: color .2s;
+    }
+    .nav-links a :hover{
+        color: var(--gold);
+
+    }
+    .btn{
+        display: inline-block;
+        padding: 12px 28px;
+        border-radius: 30px;
+        font-size: 0.9rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: transition .2s;
+        border: none;
+    }
+    .btn :hover{
+        transform: translateY(-2px);
+    }
+    .btn-gold{
+        background: var(--gold);
+        color: var(--navy);
+    }
+    .hero{
+        position: relative;
+        min-height: 88hv;
+        display: flex;
+        align-items: center;
+        background: linear-gradient(90deg, rgba(20,18,32,88) 20%, rgba(20,18,32,35) 65%, rgba(20.18.32,.15) 100%),
+        url('https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?q=80&w=1600&auto=format&fit=crop') center/cover;
+        color: var(--white);
+    }
+    .hero-content{
+        max-width: 640px;
+    }
+    .badge{
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: rgba(204, 39, 39, 0.1);
+        border: 1px solid rgba(255, 255, 255, .25);
+        padding: 6px 16px;
+        border-radius: 30px;
+        font-size: 0.85rem;
+        margin-bottom: 24px;
+
+    }
+    .hero h1 em{
+        color: var(--gold); font-style: normal;
+    }
+    .hero p{
+        color: rgba(255, 255, 255, .8);
+        font-size: 1.05rem;
+        max-width: 520px;
+        margin-bottom: 32px;
+    }   
+    .hero-buttons{
+        display:flex; gap:16px; margin-bottom: 56px;
+    }
+    .hero-stats{display: flex; gap: 48px;}
+    .hero-num{
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: var(--gold);
+
+    }
+    .stat-label{
+        font-size: 0.85rem;
+        color: rgba(24, 0, 0, 0.7);
+    }
+    .section{padding: 100px 0;}
+    .section-head{text-align: center; max-width: 600px; margin:0 auto 56px;}
+    .eyebrow{
+        color: var(--gold);
+        font-weight: 600;
+        letter-spacing: 2px;
+        font-size: 0.8rem;
+        text-transform: uppercase;
+    }
+    .section-head h2{
+        font-size: 2.4rem;
+        margin: 12px 0 16px;
+    }
+    .section-head h2 span{color: var(--golod);}
+    .section-head p{
+        color: var(--text-muted);
+    }
+    .amenities-grid{
+        display: grid;
+        grid-template-columns: repeat(3,1fr);
+        gap: 24px;
+    }
+    .amenity-card{
+        background: var(--white);
+        border: 1px solid #eee6d8;
+        border-radius: 14px;
+        padding: 32px 24px;
+        text-align: center;
+        transition: transform .25s, box-shadow .25s;
+
+    }
+    .amenity-card :hover{
+        transform: translatey(-6px);
+        box-shadow: 0 16px 30px rgba(28, 26, 46, .8);
+    }
+    .amenity-icon{
+        font-size: 2rem; 
+        margin-bottom: 16px;
+    }
+    .amenity-card h3{font-size: 1,1rem; margin-bottom: 6px;}
+    .amenity-card p{color: var(--text-muted); font-size:0.9rem;}
+    .rooms-section{
+        background: var(--navy); color: var(--white);
+    }
+    .rooms-section .section-head p{color: rgba(255, 255, 255, .65);}
+    .rooms-grid{display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 28px;
+}
+.rppm-card{
+    background: var(--navy-light);
+    border-radius: 16px;
+    overflow: hidden;
+}
+.room-img{
+    height: 200px;
+    position:relative;
+    background-size: cover;
+    background-position: center;
+}
+.room-tag{
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    background: var(--gold);
+    color: var(--navy);
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 5px 12px;
+    border-radius: 20px;
+}
+.room-info{
+    padding: 22px;
+}
+.room-info h3{font-size: 1.2rem; margin-bottom: 6px; }
+.room-info p{color: rgba(255, 255, 255, .6); font-size: 0.88rem; margin-bottom: 14px;}
+.romm-price{color: var(--gold); font-weight: 600;}
+
+.reviews-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:24px;
+}
+.review-card{
+  background:var(--white);
+  border:1px solid #eee6d8;
+  border-radius:14px;
+  padding:28px;
+}
+.stars{color:var(--gold);margin-bottom:14px;letter-spacing:2px;}
+.review-card p{font-style:italic;color:var(--text-dark);margin-bottom:20px;font-size:0.94rem;}
+.reviewer{display:flex;align-items:center;gap:12px;}
+.avatar{
+  width:42px;height:42px;border-radius:50%;
+  background:var(--gold-light);
+  display:flex;align-items:center;justify-content:center;
+  font-weight:600;color:var(--navy);font-size:0.85rem;
+}
+.reviewer-name{font-weight:600;font-size:0.92rem;}
+.reviewer-date{font-size:0.8rem;color:var(--text-muted);}
+
+.booking-section{background:var(--white);}
+.booking-wrap{
+  display:grid;
+  grid-template-columns:1fr 1.1fr;
+  gap:0;
+  background:var(--navy);
+  border-radius:20px;
+  overflow:hidden;
+}
+.booking-info{padding:56px 48px;color:var(--white);}
+.booking-info h2{font-size:2rem;margin-bottom:16px;}
+.booking-info p{color:rgba(255,255,255,.65);margin-bottom:32px;}
+.info-row{display:flex;gap:14px;margin-bottom:24px;}
+.info-icon{
+  width:40px;height:40px;border-radius:10px;
+  background:rgba(200,164,92,.15);
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;color:var(--gold);
+}
+.info-row h4{font-size:0.95rem;margin-bottom:2px;}
+.info-row span{font-size:0.85rem;color:rgba(255,255,255,.6);}
+
+.booking-form{background:var(--cream);padding:48px;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
+.form-group{display:flex;flex-direction:column;gap:6px;}
+.form-group label{font-size:0.85rem;font-weight:500;}
+.form-group input,
+.form-group select,
+.form-group textarea{
+  padding:12px 14px;
+  border:1px solid #ddd3c0;
+  border-radius:8px;
+  font-family:inherit;
+  font-size:0.9rem;
+  background:var(--white);
+}
+.form-group textarea{resize:vertical;min-height:80px;}
+.full-width{grid-column:1 / -1;}
+.form-submit{width:100%;padding:14px;margin-top:8px;font-size:0.95rem;}
+
+footer{background:#110f1f;color:rgba(255,255,255,.6);padding:56px 0 24px;}
+.footer-grid{
+  display:grid;
+  grid-template-columns:2fr 1fr 1fr 1fr;
+  gap:32px;
+  margin-bottom:40px;
+}
+.footer-grid h4{color:var(--white);font-size:0.95rem;margin-bottom:16px;}
+.footer-grid li{margin-bottom:10px;font-size:0.88rem;}
+.footer-bottom{
+  border-top:1px solid rgba(255,255,255,.1);
+  padding-top:24px;
+  text-align:center;
+  font-size:0.82rem;
+}
+@media(max-width:900px){
+  .nav-links{display:none;}
+  .hero h1{font-size:2.2rem;}
+  .amenities-grid,.rooms-grid,.reviews-grid{grid-template-columns:1fr;}
+  .booking-wrap{grid-template-columns:1fr;}
+  .form-row{grid-template-columns:1fr;}
+  .footer-grid{grid-template-columns:1fr 1fr;}
+  .hero-stats{gap:28px;}
+}
+
+
+</style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <h1>Islamic Studies</h1>
+                <ul class="nav-links">
+                    <li><a href="#rooms">rooms</a></li>
+                    <li><a href="amenities">amenities</a></li>
+                    <li><a href="reviews">reviews</a></li>
+                    <li><a href="#gallary">gallary</a></li>
+                </ul>
+                <a href="booking" class="btn">book now</a>
+            </div>
+        </div>
+    </nav>
+    <hedar class="hero">
+        <div class="container hero-content">
+            <span class="badge">🌟 4.8 . luxury boutique hotel</span>
+            <h1>where <em>Elegance</em> meets the sea</h1>
+            <p>experince timeless luxury on the french riviera.
+                 stunning ocean views, world-class service unforgettble sunsets- all just from the shore</p>
+                 <div class="hero-buttons">
+                    <a href="#booking" class="btn btn-gold">book your stay</a>
+                    <a href="#rooms" class="btn btn-outline">Explore rooms</a>
+                 </div>
+                 <div class="hero-stats">
+                    <div><div clas="stat-num">120+</div><div class="stat-label">luxury suites</div></div>
+                    <div><div clas="stat-num">4.8※</div><div class="stat-label">guest rating</div></div>
+                    <div><div clas="stat-num">15+</div><div class="stat-label">years of Excellence</div></div>
+                 </div>
+        </div>
+    </hedar>
+    <section class="section" id="anmenities">
+        <div class="container">
+            <div class="section-head">
+                <span class="eyebrow">what we offer</span>
+                <h2>hotel <span>Amenities</span></h2>
+                <p>Everything you need for a perfact stay - from relaxation to recreation.</p>
+            </div>
+            <div class="amenities-grad">
+                <div class="amenity-card"><div class="amenity-icon">🏊🏽‍♂️</div><h3>infinity bool</h3><p>overlooking the mediterranean</p></div>
+                <div class="amenity-card"><div class="amenity-icon">💆‍♂️</div><h3>spa & wellness</h3><p>full-service spa & massage</p></div>
+                <div class="amenity-card"><div class="amenity-icon">🔪</div><h3>fine dining</h3><p>3 restaurants & 2 bars</p></div>
+                <div class="amenity-card"><div class="amenity-icon">🏋️‍♀️</div><h3>fitness center</h3><p>state-of-the-art-gym</p></div>
+                <div class="amenity-card"><div class="amenity-icon"></div><h3>free wi-fi</h3><p>high-speed throughout</p></div>
+                <div class="amenity-card"><div class="amenity-icon"></div><h3>valet parking</h3><p>complimentary for guests</p></div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="section rooms-section" id="rooms">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Accommodations</span>
+      <h2>Our <span>Rooms</span></h2>
+      <p>Each room is designed with comfort and elegance in mind, offering breathtaking views and premium amenities.</p>
+    </div>
+    <div class="rooms-grid">
+      <div class="room-card">
+        <div class="room-img" style="background-image:url('https://images.unsplash.com/photo-1618773928121-c32242e63f39?q=80&w=800&auto=format&fit=crop')">
+          <span class="room-tag">Most Popular</span>
+        </div>
+        <div class="room-info">
+          <h3>Deluxe Ocean Suite</h3>
+          <p>King bed · Sea view · 45m²</p>
+          <div class="room-price">From €280 / night</div>
+        </div>
+      </div>
+      <div class="room-card">
+        <div class="room-img" style="background-image:url('https://images.unsplash.com/photo-1611892440504-42a792e24d32?q=80&w=800&auto=format&fit=crop')">
+          <span class="room-tag">Garden View</span>
+        </div>
+        <div class="room-info">
+          <h3>Garden Suite</h3>
+          <p>Queen bed · Garden view · 38m²</p>
+          <div class="room-price">From €190 / night</div>
+        </div>
+      </div>
+      <div class="room-card">
+        <div class="room-img" style="background-image:url('https://images.unsplash.com/photo-1590490360182-c33d57733427?q=80&w=800&auto=format&fit=crop')">
+          <span class="room-tag">Premium</span>
+        </div>
+        <div class="room-info">
+          <h3>Presidential Suite</h3>
+          <p>King bed · Panoramic view · 70m²</p>
+          <div class="room-price">From €450 / night</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="section" id="reviews">
+    <div class="container">
+        <div class="section-head">
+            <span class="eyebrow">testimonials</span>
+            <h2>Guest <span>reviews</span></h2>
+            <p>rea stories from real guest who experineced the grand riviera.</p>
+        </div>
+        <div class="reviews-grid">
+            <div class="review-card">
+                <div class="stars">*****</div>
+                <p>absolutely breathtaking! the ocean viw from our suite was unforgettable. the staff went above and beyond to make our anniversary spacial.</p>
+                <div class="reviewer">
+                    <div class="avater">EM</div>
+                    <div><div class="reviewer-name">elena m.</div><div class="reviewer-date">visited june 2025</div></div>
+                </div>
+            </div>
+            <div class="review-card">
+                <div class="stars">*****</div>
+                <p>"the best hotel experience of my life. the garden suite was peaceful, the food was divine, and the spa treatments were world-class."</p>
+                <div class="reviewer">
+                    <div class="avater">JR</div>
+                    <div><div class="reviewer-name">James R.</div><div class="reviewer-date">Visited April 2025</div></div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="stars">★★★★½</div>
+        <p>"Incredible service from the moment we arrived. The infinity pool at sunset is pure magic. Can't wait to come back next year!"</p>
+        <div class="reviewer">
+          <div class="avatar">SC</div>
+          <div><div class="reviewer-name">Sophie C.</div><div class="reviewer-date">Visited March 2025</div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="section booking-section" id="booking">
+  <div class="container">
+    <div class="booking-wrap">
+      <div class="booking-info">
+        <h2>Plan Your Visit</h2>
+        <p>We're here to help you plan the perfect stay on the French Riviera.</p>
+        <div class="info-row">
+          <div class="info-icon">📍</div>
+          <div><h4>Address</h4><span>Av. Jean Rostand, 95570 Moisselles, France</span></div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon">🕒</div>
+          <div><h4>Reception</h4><span>Open 24/7 · Check-in 3PM · Check-out 11AM</span></div>
+        </div>
+      </div>
+      <div class="booking-form">
+        <form onsubmit="return false;">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="checkin">Check-in</label>
+              <input type="date" id="checkin">
+            </div>
+            <div class="form-group">
+              <label for="checkout">Check-out</label>
+              <input type="date" id="checkout">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="guests">Guests</label>
+              <select id="guests">
+                <option>1 Guest</option>
+                <option selected>2 Guests</option>
+                <option>3 Guests</option>
+                <option>4+ Guests</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="roomtype">Room Type</label>
+              <select id="roomtype">
+                <option>Ocean Suite</option>
+                <option>Garden Suite</option>
+                <option>Presidential Suite</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group full-width" style="margin-bottom:16px;">
+            <label for="requests">Special Requests</label>
+            <textarea id="requests" placeholder="Any special requests or preferences..."></textarea>
+          </div>
+          <button type="submit" class="btn btn-gold form-submit">Check Availability</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="logo" style="margin-bottom:12px;">Grand<span>Riviera</span></div>
+        <p style="font-size:0.88rem;">Timeless luxury on the French Riviera since 2010.</p>
+      </div>
+      <div>
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#rooms">Rooms</a></li>
+          <li><a href="#amenities">Amenities</a></li>
+          <li><a href="#reviews">Reviews</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Support</h4>
+        <ul>
+          <li><a href="#">FAQ</a></li>
+          <li><a href="#">Cancellation Policy</a></li>
+          <li><a href="#">Contact Us</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Visit Us</h4>
+        <ul>
+          <li>Av. Jean Rostand</li>
+          <li>95570 Moisselles, France</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2026 Grand Riviera Hotel. All rights reserved.</div>
+  </div>
+</footer>
+    
+
+    
+</body>
+</html>
